@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ sitedata.site.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ sitedata.site.title }}</title>
+<meta name="description" content="{{ sitedata.site.description }}">
+<link rel="icon" href="data:,">
+{% raw %}<script>// Layout mode before first paint: L = pinned screens on a fixed grid, F = flowing page on a scrolling grid.
+  // "lines" hides boxes until they scroll into view, then slides them in and draws their frames.
+  // The intro plays once per tab session and never for reduced motion.
+  (function () {
+    var root = document.documentElement;
+    root.classList.add("js", innerWidth > 860 ? "L" : "F");
+    try {
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("lattice-intro")) root.classList.add("js-intro");
+    } catch (e) {}
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) root.classList.add("lines");
+  })();</script>{% endraw %}
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+{% include "sections/header.njk" %}
+{{ content | safe }}
+{% include "sections/footer.njk" %}
+<script>window.FG_IMG="/img/";</script>
+<script src="/site.js" defer></script>
+</body>
+</html>
